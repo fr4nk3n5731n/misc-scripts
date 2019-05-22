@@ -1,0 +1,17 @@
+[Unit]
+Description=Redshift
+Requires=graphical.target
+
+[Service]
+User=kodi
+Group=kodi
+Type=simple
+Environment=DISPLAY=:0
+Type=simple
+ExecStart=/usr/bin/redshift -l 51.5:10.5 -t 6500:3100
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
+

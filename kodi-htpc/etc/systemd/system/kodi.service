@@ -1,0 +1,19 @@
+[Unit]
+Description=Kodi standalone
+After=systemd-user-sessions.service network-online.target sound.target mysqld.service
+Requires=network-online.target
+Conflicts=getty@tty1.service
+
+[Service]
+User=kodi
+Group=kodi
+Type=simple
+PAMName=login
+TTYPath=/dev/tty1
+ExecStart=/usr/bin/xinit /usr/bin/kodi-standalone -- :0 -nolisten tcp vt1
+Restart=on-abort
+RestartSec=5
+StandardInput=tty
+
+[Install]
+WantedBy=multi-user.target
